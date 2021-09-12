@@ -23,11 +23,10 @@ async def api_page(serial: str, policy: str):
         }, status.HTTP_503_SERVICE_UNAVAILABLE)
 
     errors = data.get("errors", [])
-    if len(errors) > 0:
-        if errors[0]["code"] == 617:
-            return JSONResponse({
-                "status": "error", "message": "Договор не найден"
-            }, status.HTTP_422_UNPROCESSABLE_ENTITY)
+    if (len(errors) > 0 and errors[0]["code"] == 617) or not data.get("policyInfoExtended", [])):
+        return JSONResponse({
+            "status": "error", "message": "Договор не найден"
+        }, status.HTTP_422_UNPROCESSABLE_ENTITY)
 
     # -- Return parsed data
     info = data["policyInfoExtended"][0]
