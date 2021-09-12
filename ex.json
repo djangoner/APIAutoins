@@ -1,0 +1,31 @@
+{
+    "statusCode": 1,
+    "statusMessage": "Обработан успешно",
+    "errors": [],
+    "policyInfoExtended": [
+      {
+        "policySerialKey": "ХХХ",
+        "policyNumberKey": "0057585168",
+        "insurerName": "ООО \"СК \"Согласие\"",
+        "policyStateSecret": false,
+        "dateCreate": "2018-09-28",
+        "dateAgreementCreate": null,
+        "dateActionBeg": "2018-10-21",
+        "dateActionEnd": "2019-10-20",
+        "period1Beg": "2018-10-21",
+        "period1End": "2019-10-20",
+        "period2Beg": null,
+        "period2End": null,
+        "period3Beg": null,
+        "period3End": null,
+        "licensePlate": "О940РТ190",
+        "vin": "JTNBV58E90J166613",
+        "bodyNumber": null,
+        "chassisNumber": null,
+        "markCar": "Toyota",
+        "modelCar": "Corolla",
+        "policyId": null,
+        "policyState": "INACTIVE"
+      }
+    ]
+  }
