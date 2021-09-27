@@ -9,3 +9,4 @@ AUTOINS_HEADERS = {
 }
 
 PROXYS_FILE = "proxys.txt"
+WORKING_POLICIES_FILE="policies_check.txt"

@@ -4,7 +4,7 @@ import logging
 import aiohttp
 
 from .config import AUTOINS_API_URL, AUTOINS_HEADERS
-from .utils import get_proxy, policy_serial_check
+from .utils import get_proxy, policy_serial_check, random_string
 
 logging.basicConfig(level=logging.INFO)
 
@@ -15,14 +15,15 @@ async def osago_android_api(serial: str, policy: str) -> dict:
         raise ValueError("Invalid policy serial!")
 
     data = {
-        "guid": "4287A7B39C99476690B73B138DC77D8C",
+        # "guid": "4287A7B39C99476690B73B138DC77D8C",
+        "guid": random_string(length=32),
         "policyNumberKey": policy,
         "policySerialKey": serial_valid,  # Must be in Russian!
         "userId": None
     }
 
     proxy = get_proxy()
-    logging.info(f"Sending request to autoria with {proxy=}, {data=}")
+    logging.info(f"Sending request to autoria with proxy={proxy}, data={data}")
 
     try:
         async with aiohttp.ClientSession() as session:

@@ -1,5 +1,5 @@
 import os
-from api_mobile.config import PROXYS_FILE
+from api_mobile.config import PROXYS_FILE, WORKING_POLICIES_FILE
 from random import choice
 
 POLICY_SERIALS = {
@@ -15,6 +15,7 @@ POLICY_SERIALS = {
 }
 
 PROXYS = []
+WORKING_POLICIES = []
 
 
 def read_proxys_file() -> None:
@@ -30,6 +31,21 @@ def read_proxys_file() -> None:
             if not line:
                 continue
             PROXYS.append(line)
+
+
+def read_working_policies_file() -> None:
+    """ Read proxys file. Line format: XXX:0123456789 """
+
+    WORKING_POLICIES.clear()
+    if not os.path.exists(WORKING_POLICIES_FILE):
+        with open(WORKING_POLICIES_FILE, "w", encoding="utf8") as f:
+            f.write("")
+
+    with open(WORKING_POLICIES_FILE, "r", encoding="utf8") as f:
+        for line in f.readlines():
+            if not line:
+                continue
+            WORKING_POLICIES.append(line.split(":"))
 
 
 def random_string(length=16):
@@ -57,3 +73,14 @@ def get_proxy() -> str:
         return None
     else:
         return choice(PROXYS)
+
+
+def get_working_policy() -> str:
+    """ Get a random working pilycy from list """
+    if not WORKING_POLICIES:
+        read_working_policies_file()
+
+    if len(WORKING_POLICIES) < 1:
+        return None
+    else:
+        return choice(WORKING_POLICIES)
