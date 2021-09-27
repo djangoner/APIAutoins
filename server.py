@@ -8,7 +8,7 @@ app = FastAPI(title="Osago Policy API")
 
 async def check_working_policy():
     policy_info = get_working_policy()
-    if len(policy_info < 1):
+    if len(policy_info) < 1:
         return
 
     serial, policy = policy_info
